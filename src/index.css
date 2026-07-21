@@ -1,0 +1,282 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
+
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --cream: #f5f0e8;
+  --parchment: #ede8db;
+  --ink: #1a1714;
+  --ink-light: #3d3830;
+  --sepia: #8b7355;
+  --sepia-light: #c4a882;
+  --gold: #b8963e;
+  --gold-light: #d4af6a;
+  --rust: #8b4513;
+  --forest: #2d4a3e;
+  --chapter-red: #6b2737;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--cream);
+  color: var(--ink);
+  font-family: 'EB Garamond', Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--parchment);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--sepia-light);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sepia);
+}
+
+/* Typography */
+.font-display {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+.font-serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+.font-body {
+  font-family: 'EB Garamond', Georgia, serif;
+}
+.font-sans {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Page texture overlay */
+.paper-texture {
+  position: relative;
+}
+.paper-texture::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* Premium eased transition gradient between dark hero and cream content */
+.hero-bottom-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  background-color: var(--cream);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 35%,
+    rgba(0, 0, 0, 0.08) 55%,
+    rgba(0, 0, 0, 0.25) 72%,
+    rgba(0, 0, 0, 0.6) 88%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 35%,
+    rgba(0, 0, 0, 0.08) 55%,
+    rgba(0, 0, 0, 0.25) 72%,
+    rgba(0, 0, 0, 0.6) 88%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+/* Drop caps */
+.drop-cap::first-letter {
+  float: left;
+  font-family: 'Playfair Display', serif;
+  font-size: 5.5em;
+  line-height: 0.8;
+  padding-right: 0.1em;
+  padding-top: 0.05em;
+  color: var(--chapter-red);
+  font-weight: 700;
+}
+
+/* Decorative divider */
+.chapter-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--sepia-light);
+}
+.chapter-divider::before,
+.chapter-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--sepia-light), transparent);
+}
+
+/* Progress bar */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--gold), var(--chapter-red));
+  z-index: 1000;
+  transform-origin: left;
+  box-shadow: 0 0 8px rgba(184, 150, 62, 0.5);
+}
+
+/* TOC hover effects */
+.toc-entry {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.toc-entry::before {
+  content: '';
+  position: absolute;
+  left: -2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.4s ease;
+}
+.toc-entry:hover::before {
+  width: 1.5rem;
+}
+
+/* Ink underline animation */
+.ink-underline {
+  position: relative;
+  display: inline;
+}
+.ink-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.6s ease;
+}
+.ink-underline:hover::after {
+  width: 100%;
+}
+
+/* Floating ornament */
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-6px) rotate(0.5deg); }
+  66% { transform: translateY(-3px) rotate(-0.5deg); }
+}
+.float-ornament {
+  animation: float-gentle 8s ease-in-out infinite;
+}
+
+/* Page turn effect */
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: perspective(1200px) rotateY(-8deg) translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(1200px) rotateY(0deg) translateX(0);
+  }
+}
+.page-enter {
+  animation: page-in 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Scrollytelling section */
+.sticky-container {
+  position: relative;
+}
+
+/* Image assembly animation */
+@keyframes assemble {
+  0% { clip-path: inset(0 100% 0 0); }
+  100% { clip-path: inset(0 0% 0 0); }
+}
+.assemble-reveal {
+  animation: assemble 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+/* Worn book edge effect */
+.book-spine {
+  box-shadow: 
+    inset -4px 0 8px rgba(0,0,0,0.1),
+    -2px 0 4px rgba(0,0,0,0.08);
+}
+
+/* Chapter number styling */
+.chapter-num {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--sepia-light);
+  letter-spacing: 0.2em;
+}
+
+/* Marginal notes */
+.margin-note {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--sepia);
+  border-left: 2px solid var(--sepia-light);
+  padding-left: 0.75rem;
+}
+
+/* Animated heading base style */
+.font-display {
+  font-family: 'Playfair Display', serif;
+  font-weight: 500;
+  color: #1a1714;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(184, 150, 62, 0.25);
+  color: var(--ink);
+}
+
+/* Glow on focus */
+.focus-glow:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--gold);
+}
+
+/* Line texture */
+.lined-bg {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 31px,
+    rgba(139, 115, 85, 0.08) 31px,
+    rgba(139, 115, 85, 0.08) 32px
+  );
+  background-size: 100% 32px;
+}
