@@ -1,4 +1,6 @@
-﻿# Julian Voss — Novel-Style Portfolio
+<img width="1919" height="1079" alt="novel-style-portfolio" src="https://github.com/user-attachments/assets/77870435-c2ae-4265-a894-ef3a6e2d8da3" />
+
+# Julian Voss — Novel-Style Portfolio
 
 A premium, literary-inspired UX design portfolio built as a single-page web application. The portfolio is structured like a novel — each case study is a "chapter" with its own narrative arc, visual identity, and emotional tone.
 
